@@ -14,6 +14,7 @@
             Schema::create('states', function (Blueprint $table) {
                 $table->id();
                 $table->foreignId('country_id')->constrained()->cascadeOnDelete();
+                $table->string('name');
                 $table->timestamps();
             });
         }

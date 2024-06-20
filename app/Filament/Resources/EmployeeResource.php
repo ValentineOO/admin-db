@@ -23,37 +23,48 @@ class EmployeeResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('country_id')
-                    ->required()
-                    ->numeric(),
-                Forms\Components\TextInput::make('state_id')
-                    ->required()
-                    ->numeric(),
-                Forms\Components\TextInput::make('city_id')
-                    ->required()
-                    ->numeric(),
-                Forms\Components\TextInput::make('department_id')
-                    ->required()
-                    ->numeric(),
-                Forms\Components\TextInput::make('first_name')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('last_name')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('middle_name')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('address')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('zip_code')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\DatePicker::make('date_of_birth')
-                    ->required(),
-                Forms\Components\DatePicker::make('date_hired')
-                    ->required(),
+                Forms\Components\Section::make('Personal Information')
+                    ->description('Input your details')
+                    ->schema([
+                        Forms\Components\TextInput::make('first_name')
+                            ->required()
+                            ->maxLength(255),
+                        Forms\Components\TextInput::make('middle_name')
+                            ->required()
+                            ->maxLength(255),
+                        Forms\Components\TextInput::make('last_name')
+                            ->required()
+                            ->maxLength(255),
+                        Forms\Components\DatePicker::make('date_of_birth')
+                            ->required()
+                            ->columnSpanFull(),
+                    ])->columns(3),
+
+                Forms\Components\Section::make('Contact Information')->schema([
+                    Forms\Components\TextInput::make('address')
+                        ->required()
+                        ->maxLength(255),
+                    Forms\Components\TextInput::make('city_id')
+                        ->required()
+                        ->numeric(),
+                    Forms\Components\TextInput::make('state_id')
+                        ->required()
+                        ->numeric(),
+                    Forms\Components\TextInput::make('country_id')
+                        ->required()
+                        ->numeric(),
+                    Forms\Components\TextInput::make('zip_code')
+                        ->required()
+                        ->maxLength(255),
+                ])->columns(3),
+
+                Forms\Components\Section::make('Employment Details')->schema([
+                    Forms\Components\TextInput::make('department_id')
+                        ->required()
+                        ->numeric(),
+                    Forms\Components\DatePicker::make('date_hired')
+                        ->required()
+                ])->columns(2)
             ]);
     }
 

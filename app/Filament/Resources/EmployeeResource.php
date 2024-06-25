@@ -27,6 +27,39 @@ class EmployeeResource extends Resource
                 Forms\Components\Section::make('Personal Information')
                     ->description('Input your details')
                     ->schema([
+                        Forms\Components\Select::make('country_id')
+                            ->relationship(name: 'country', titleAttribute: 'name')
+                            ->searchable()
+                            ->preload()
+                            ->native(false)
+                            ->required(),
+
+                        Forms\Components\Select::make('state_id')
+                            ->relationship(name: 'state', titleAttribute: 'name')
+                            ->searchable()
+                            ->preload()
+                            ->native(false)
+                            ->required(),
+
+                        Forms\Components\Select::make('city_id')
+                            ->relationship(name: 'city', titleAttribute: 'name')
+                            ->searchable()
+                            ->preload()
+                            ->native(false)
+                            ->required(),
+
+                        Forms\Components\Select::make('department_id')
+                            ->relationship(name: 'department', titleAttribute: 'name')
+                            ->searchable()
+                            ->preload()
+                            ->native(false) 
+                            ->required(),
+
+                    ])->columns(2),
+
+                Forms\Components\Section::make('Personal Information')
+                    ->description('Input your details')
+                    ->schema([
                         Forms\Components\TextInput::make('first_name')
                             ->required()
                             ->maxLength(255),

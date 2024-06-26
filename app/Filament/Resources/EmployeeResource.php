@@ -86,6 +86,8 @@ class EmployeeResource extends Resource
                             ->required()
                             ->maxLength(255),
                         Forms\Components\DatePicker::make('date_of_birth')
+                            ->native(false)
+                            ->displayFormat('d/m/Y')
                             ->required()
                             ->columnSpanFull(),
                     ])->columns(3),
@@ -114,6 +116,9 @@ class EmployeeResource extends Resource
                         ->numeric(),
                     Forms\Components\DatePicker::make('date_hired')
                         ->required()
+                        ->native(false)
+                        ->displayFormat('d/m/Y')
+
                 ])->columns(2)
             ]);
     }

@@ -4,6 +4,8 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\StateResource\Pages;
 use App\Filament\Resources\StateResource\RelationManagers;
+use App\Filament\Resources\StateResource\RelationManagers\CitiesRelationManager;
+use App\Filament\Resources\StateResource\RelationManagers\EmployeesRelationManager;
 use App\Models\State;
 use Filament\Forms;
 use Filament\Forms\Form;
@@ -82,9 +84,9 @@ class StateResource extends Resource
         return $infolist
             ->schema([
                 Section::make('State Information')
-                ->schema([
-                    TextEntry::make('country.name')->label('Country Name'),
-                    TextEntry::make('name')->label('State Name'),
+                    ->schema([
+                        TextEntry::make('country.name')->label('Country Name'),
+                        TextEntry::make('name')->label('State Name'),
                     ])->columns(2)
             ]);
     }
@@ -92,7 +94,8 @@ class StateResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            CitiesRelationManager::class,
+            EmployeesRelationManager::class,
         ];
     }
 

@@ -39,7 +39,6 @@ class EmployeeResource extends Resource
 
     public static function getGlobalSearchResultTitle(Model $record): string|Htmlable
     {
-        // return $record->first_name;
         return $record->first_name . ' ' . $record->last_name;
     }
 
@@ -58,6 +57,16 @@ class EmployeeResource extends Resource
     public static function getGlobalSearchEloquentQuery(): Builder
     {
         return parent::getGlobalSearchEloquentQuery()->with(['department']);
+    }
+
+    public static function getNavigationBadge(): ?string
+    {
+        return static::getModel()::count();
+    }
+
+    public static function getNavigationBadgeColor(): string|array|null
+    {
+        return static::getModel()::count() > 5 ? 'warning' : 'success';
     }
 
     public static function form(Form $form): Form

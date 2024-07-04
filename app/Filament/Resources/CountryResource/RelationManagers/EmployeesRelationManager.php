@@ -128,8 +128,8 @@ class EmployeesRelationManager extends RelationManager
             ->recordTitleAttribute('first_name')
             ->columns([
                 Tables\Columns\TextColumn::make('first_name')
-                    ->searchable()
-                    ->sortable(),
+                    ->sortable()
+                    ->searchable(),
                 Tables\Columns\TextColumn::make('last_name')
                     ->searchable()
                     ->sortable(),

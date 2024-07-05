@@ -263,6 +263,8 @@ class EmployeeResource extends Resource
             ->actions([
                 Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make()
+                    ->successNotificationTitle('Employee profile deleted successfully.')
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

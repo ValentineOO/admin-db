@@ -35,7 +35,6 @@ class DepartmentResource extends Resource
     public static function getNavigationBadgeColor(): string|array|null
     {
         return static::getModel()::count() > 5 ? 'warning' : 'success';
-        // return 'success';
     }
 
 

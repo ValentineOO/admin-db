@@ -15,7 +15,7 @@ class EditTeamProfile extends EditTenantProfile
 
     public function form(Form $form): Form
     {
-        return $form 
+        return $form
             ->schema([
                 TextInput::make('name'),
                 TextInput::make('slug'),

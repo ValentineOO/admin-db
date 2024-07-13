@@ -8,6 +8,7 @@ use App\Models\Team;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
+use Filament\Navigation\MenuItem;
 use Filament\Pages;
 use Filament\Panel;
 use Filament\PanelProvider;
@@ -26,9 +27,19 @@ class CodeCraftPanelProvider extends PanelProvider
     public function panel(Panel $panel): Panel
     {
         return $panel
+            ->default()
             ->id('codeCraft')
             ->path('codeCraft')
             ->login()
+            ->registration()
+            ->profile()
+            ->userMenuItems([
+                MenuItem::make()
+                    ->label('Dashboard')
+                    ->icon('heroicon-o-cog-6-tooth')
+                    ->url('/admin')
+                    ->visible(fn (): bool => auth()->user()->is_admin)
+            ])
             ->colors([
                 'danger' => Color::Red,
                 'gray' => Color::Slate,
@@ -37,6 +48,7 @@ class CodeCraftPanelProvider extends PanelProvider
                 'success' => Color::Emerald,
                 'warning' => Color::Orange,
             ])
+            ->brandName('Codecraft')
             ->discoverResources(in: app_path('Filament/CodeCraft/Resources'), for: 'App\\Filament\\CodeCraft\\Resources')
             ->discoverPages(in: app_path('Filament/CodeCraft/Pages'), for: 'App\\Filament\\CodeCraft\\Pages')
             ->pages([

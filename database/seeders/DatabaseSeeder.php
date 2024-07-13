@@ -14,9 +14,14 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        $defaultUserEmail = env('DEFAULT_USER_EMAIL', 'demo@gmail.com');
-        $defaultUserName = env('DEFAULT_USER_NAME', 'demo');
-        $defaultUserPassword = env('DEFAULT_USER_PASSWORD', 'demo');
+        $defaultUserEmail = env('DEFAULT_USER_EMAIL');
+        $defaultUserName = env('DEFAULT_USER_NAME',);
+        $defaultUserPassword = env('DEFAULT_USER_PASSWORD');
+
+        // Check if the environment variables are set
+        if (!$defaultUserEmail || !$defaultUserName || !$defaultUserPassword) {
+            throw new \Exception('Default user environment variables are not set');
+        }
 
         // Check if the user already exists
         $user = User::where('email', $defaultUserEmail)->first();
@@ -25,6 +30,7 @@ class DatabaseSeeder extends Seeder
             // User exists, update user information
             $user->update([
                 'name' => $defaultUserName,
+                'is_admin' => true,
                 // Optionally update other fields if necessary
             ]);
         } else {
@@ -33,6 +39,7 @@ class DatabaseSeeder extends Seeder
                 'name' => $defaultUserName,
                 'email' => $defaultUserEmail,
                 'password' => Hash::make($defaultUserPassword),
+                'is_admin' => true,
             ]);
         }
 

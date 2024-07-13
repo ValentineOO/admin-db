@@ -2,9 +2,11 @@
 
 namespace App\Providers\Filament;
 
+use App\Http\Middleware\VerifyIsAdmin;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
+use Filament\Navigation\MenuItem;
 use Filament\Pages;
 use Filament\Panel;
 use Filament\PanelProvider;
@@ -23,7 +25,6 @@ class AdminPanelProvider extends PanelProvider
     public function panel(Panel $panel): Panel
     {
         return $panel
-            ->default()
             ->id('admin')
             ->path('admin')
             ->login()
@@ -35,7 +36,13 @@ class AdminPanelProvider extends PanelProvider
                 'success' => Color::Emerald,
                 'warning' => Color::Orange,
             ])
-            ->brandName('AdminDb')
+            ->userMenuItems([
+                MenuItem::make()
+                    ->label('Codecraft')
+                    ->icon('heroicon-o-cog-6-tooth')
+                    ->url('/codeCraft')
+            ])
+            ->brandName('AdminDashboard')
             ->navigationGroups(['Employee Management', 'System Management', 'User Management'])
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\Filament\\Pages')
@@ -57,9 +64,7 @@ class AdminPanelProvider extends PanelProvider
                 SubstituteBindings::class,
                 DisableBladeIconComponents::class,
                 DispatchServingFilamentEvent::class,
-            ])
-            ->authMiddleware([
-                Authenticate::class,
+                VerifyIsAdmin::class
             ]);
     }
 }

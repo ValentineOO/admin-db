@@ -35,7 +35,7 @@ class CodeCraftPanelProvider extends PanelProvider
             ->profile()
             ->userMenuItems([
                 MenuItem::make()
-                    ->label('Dashboard')
+                    ->label('Admin')
                     ->icon('heroicon-o-cog-6-tooth')
                     ->url('/admin')
                     ->visible(fn (): bool => auth()->user()->is_admin)
@@ -44,11 +44,11 @@ class CodeCraftPanelProvider extends PanelProvider
                 'danger' => Color::Red,
                 'gray' => Color::Slate,
                 'info' => Color::Blue,
-                'primary' => Color::Indigo,
+                'primary' => Color::Orange,
                 'success' => Color::Emerald,
                 'warning' => Color::Orange,
             ])
-            ->brandName('Codecraft')
+            ->brandName('Code Craft')
             ->discoverResources(in: app_path('Filament/CodeCraft/Resources'), for: 'App\\Filament\\CodeCraft\\Resources')
             ->discoverPages(in: app_path('Filament/CodeCraft/Pages'), for: 'App\\Filament\\CodeCraft\\Pages')
             ->pages([

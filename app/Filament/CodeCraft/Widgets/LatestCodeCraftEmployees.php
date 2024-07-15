@@ -18,9 +18,9 @@ class LatestCodeCraftEmployees extends BaseWidget
             ->query(Employee::query()->whereBelongsTo(Filament::getTenant()))
             ->defaultSort('created_at', 'desc')
             ->columns([
-                Tables\Columns\TextColumn::make('country.name'),
                 Tables\Columns\TextColumn::make('first_name'),
                 Tables\Columns\TextColumn::make('last_name'),
+                Tables\Columns\TextColumn::make('department.name'),
             ]);
     }
 

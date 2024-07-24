@@ -20,9 +20,9 @@ class LatestAdminEmployees extends BaseWidget
             ->query(Employee::query())
             ->defaultSort('created_at', 'desc')
             ->columns([
-                Tables\Columns\TextColumn::make('country.name'),
                 Tables\Columns\TextColumn::make('first_name'),
                 Tables\Columns\TextColumn::make('last_name'),
+                Tables\Columns\TextColumn::make('department.name'),
             ]);
     }
 }

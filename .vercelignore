@@ -1,0 +1,36 @@
+# Dependencies
+/node_modules
+/vendor
+
+# Environment and local files
+.env*
+*.log
+*.local
+
+# Build, cache, and storage
+/bootstrap/cache
+/storage
+/public/storage
+/public/hot
+/public/build
+
+# Development and testing
+/tests
+/phpunit.xml
+/.phpunit.result.cache
+
+# Documentation
+/docs
+
+# IDE and editor
+/.idea
+/.vscode
+
+# Laravel-specific
+/artisan
+
+# Hidden files and directories (except some specific ones)
+.*
+!.gitignore
+!.gitattributes
+!.editorconfig

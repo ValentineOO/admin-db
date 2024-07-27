@@ -1,0 +1,49 @@
+# Version control
+.git
+.gitignore
+
+# Node.js dependencies
+node_modules
+npm-debug.log
+yarn-error.log
+
+# Composer dependencies
+vendor
+
+# Laravel specific
+public/storage
+storage/*.key
+storage/logs
+storage/framework/cache
+storage/framework/sessions
+storage/framework/testing
+storage/framework/views
+bootstrap/cache/*
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# IDE specific
+.idea
+.vscode
+
+# OS specific
+.DS_Store
+Thumbs.db
+
+# Build artifacts
+build
+dist
+
+# Testing
+phpunit.xml
+.phpunit.result.cache
+
+# Misc
+.dockerignore
+docker-compose.yml
+docker-compose.*.yml
+Dockerfile
+README.md
